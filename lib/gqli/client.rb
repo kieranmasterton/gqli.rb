@@ -39,8 +39,9 @@ module GQLi
       fail "Error: #{http_response.reason}\nBody: #{http_response.body}" if http_response.status >= 300
 
       data = JSON.parse(http_response.to_s)['data']
+      extensions = JSON.parse(http_response.to_s)['extensions']
 
-      Response.new(data, query)
+      Response.new(data, extensions, query)
     end
 
     # Validates a query against the schema
